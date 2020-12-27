@@ -1,6 +1,7 @@
 # Machine Learning and Statistics - Project
 
-Machine Learning and Statistics module, Data Analytics Course, GMIT 2020-2021
+Machine Learning and Statistics module, Data Analytics Course, GMIT 2020-2021  
+Lecturer: Dr. Ian McLoughlin
 
 >Author: **Andrzej Kocielski**  
 >Github: [andkoc001](https://github.com/andkoc001/)  
@@ -24,7 +25,7 @@ The project is done in a Jupyter Notebook [Powerproduction_ML.ipynb](https://git
 
 ### Viewing Project
 
-__Web App__
+#### Web App
 
 In order to open the web app, execute the following commands in the terminal
 
@@ -42,12 +43,14 @@ set FLASK_APP=rando.py
 python -m flask run
 ```
 
+C) Docker
+
 ```bash
 docker build . -t rando-image
 docker run --name rando-container -d -p 5000:5000 rando-image
 ```
 
-__Viewing Notebook__
+#### Viewing Notebook
 
 For viewing the notebook online, it is recommended to use Jupyter Notebooks viewer, [nbviewer](https://nbviewer.jupyter.org/). Paste the link to the notebook to be inspected into provided field.
 
@@ -62,13 +65,14 @@ The goal of the project is to produce a model or models that, based on the provi
 The detailed project instruction can be found in the [file]<https://learnonline.gmit.ie/mod/url/view.php?id=102004>  
 
 ___
-## work in progress ....
+
+## work in progress
 
 ![pic](https://storage.ning.com/topology/rest/1.0/file/get/952937562?profile=RESIZE_710x)
 
-https://www.datasciencecentral.com/profiles/blogs/3-types-of-regression-in-one-picture-baba-png
+[Types of regression](https://www.datasciencecentral.com/profiles/blogs/3-types-of-regression-in-one-picture-baba-png)
 
-
+to be continued...
 ___
 
 ## References
@@ -82,16 +86,17 @@ General, high-level, reference sources are listed below. References to specific 
 ### Regarding Python environment
 
 - Python 3 Documentation. [online] Available at: <https://docs.python.org/3/> [Accessed November 2019].
+- Project Jupyter Documentation. [online] Available at: <https://jupyter.org/documentation> [Accessed November 2019].
 - Numpy - ...
 - Pandas - ...
+- Flask - ...
 - Scipy - Scientific computing tools for Python.  [online] Available at:<https://www.scipy.org/about.html> [Accessed December 2019].
 - Matplotlib - ...
 - Seaborn - ...
-- Project Jupyter Documentation. [online] Available at: <https://jupyter.org/documentation> [Accessed November 2019].
 
 ### Regarding the tools used
 
-- Dokker - ...
+- Docker - ...
 
 ___
 

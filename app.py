@@ -5,7 +5,7 @@
 # Description: Web deployment of the machine learning project. See README.md on my GitHub for more information.
 # The application is based on the lecture materials, and other sources quoted as they were used in the program.
 # Context: Machine Learning and Statistics, GMIT, 2020
-# Lecturer: dr Ian McLoughlin
+# Lecturer: Dr. Ian McLoughlin
 ####################################
 
 
@@ -45,10 +45,10 @@ def uniform():
 def normal():
     return {"value": np.random.normal()}
 
+
 # ------------------
 # Check dependencies
 # ------------------
-
 
 if __name__ == '__main__':
     app.run(debug=True)
