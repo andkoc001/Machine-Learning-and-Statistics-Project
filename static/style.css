@@ -1,0 +1,402 @@
+/*
+Title: Data Representation Project, GMIT 2020
+Author: Andrzej Kocielski, G00376291@gmit.ie
+GitHub: https://github.com/andkoc001/Data_Rep_Project
+Lecturer: Dr. Andrew Beatty
+Styles adopted from: https://github.com/andkoc001/Web_App_Dev/blob/master/Project/style.css
+*/
+
+/* ### ### ### */
+
+/* Colour scheme */
+for_reference_only /* Non existing element, but left here because my IDE shows the colour preview beside the colour code  */
+{
+	background-color: #124; /* 1st background - website */ 
+	background-color: #334; /* 2nd background - main section*/
+	background-color: #234; /* 3rd background - fields */
+	background-color: #05a; /* menu bar background */
+	background-color: #3ad; /* buttons background */
+	
+	color: #eee; /* 1st text colour - main text */
+	color: #bbd; /* 2nd text colour, in-text links */
+	color: #9BC; /* 3nd text colour, placeholders */
+	
+	color: #9df; /* 1st headline colour, section title */
+	
+	color: #f80; /* 1st highlight colour, logo text */
+	color: #fd7; /* 2nd highlight colour */
+
+	color: #05a; /* button default */
+	color: #051; /* button update */
+	color: #832; /* button delete */
+}
+
+/* ### ### ### */
+
+/* Used with 'Go to top' button - see below*/
+html {
+  scroll-behavior: smooth;
+}
+
+body
+{
+	margin: 0 !important;
+	padding: 0px 0px;
+	background-color: #124;
+	color: #eee;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 16px;
+	min-width: 600px;
+}
+
+header
+{
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	padding: 0;
+}
+
+/* Web site title */
+h1.logo_title
+{
+	color: #f80;
+	font-size: 38px;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 5px;
+	margin-top: 30px;
+	margin-bottom: 10px;
+}
+
+/* ### ### ### */
+
+/* links */
+a:link {
+		color: #9df;
+}
+
+/* visited link */
+a:visited {
+		color: #9df;
+}
+
+/* mouse over link */
+a:hover {
+		color: #9df;
+}
+
+/* selected link */
+a:active {
+		color: #eee;
+}
+
+/* ### ### ### */
+
+/* Navigation Bar */
+#topnav
+{
+	background-color: #05a;
+	text-align: center;
+	clear: both;
+}
+
+/* Each element of the menu (class) */
+.menu
+{
+	list-style-type: none;
+	width: 100%;
+	margin: 0;
+	padding: 5px;
+	font-size: 18px;
+	min-height: 38px;
+	line-height: 120%;
+}
+
+.menu > li
+{
+	display: inline-block;
+	border-right: 2px dashed #124;
+}
+
+/* Add left border to the first menu element */
+.menu > li:first-child
+{
+	border-left: 2px dashed #124;
+	padding-left: 5px;
+}
+
+.menu a
+{
+	color: #fd7;
+	text-decoration: none;
+	display: block;
+	padding: 10px 15px;
+	margin-right: 5px;
+}
+
+.menu a:hover
+{
+	background-color: #049;
+	color: #fd7;
+}
+
+
+.picture
+{
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	width: 320px;
+}
+
+.caption
+{
+	color:#bbd;
+	font-size: 10px;
+	font-weight: 100;
+	letter-spacing: 0px;
+	margin-bottom: 8px;
+	float: left;
+}
+
+.caption a:hover
+{
+	color: #bbd;	
+	text-decoration: none;
+}
+
+.caption a:visited
+{
+	text-decoration: none;
+}
+
+
+/* ### ### ### */
+
+h1
+{
+	font-size: 28px;
+	font-weight: 400;
+	color: #fd7;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	text-align: center;
+}
+
+h2
+{
+	font-size: 20px;
+	font-weight: 400;
+	color: #fd7;
+	padding-top: 10px;
+}
+
+
+/* This class container holds the main section of the main webpage - only one per page*/
+.mainsection
+{
+	color: #eee;
+}
+
+
+/* Collection of the main website content elements */
+.core
+{
+	background-color: #234;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	width: 950px;
+	/*max-width: 950px;*/
+	margin-top: 15px;
+	margin-bottom: 15px;
+	display: table;
+	clear: both;
+}
+
+#equipment_list
+{
+	color: #bbd;
+	margin-top: 10px;
+}
+
+/* ### ### ### */
+
+/* Set a style for all buttons throughout the webpage */
+button {
+	background-color: #05a;
+	color: #fd7;
+	font-weight: 400;
+	padding: 4px 8px;
+	margin: 8px 0px;
+	border: none;
+	cursor: pointer;
+	border-radius: 0px;
+}
+
+button:hover
+{
+	opacity: 0.8;
+}
+
+/* Defines properties (mostly visual) for all buttons of this (submit) class */
+.checkBitcoin
+{
+	background-color: #05a;
+	color: #fd7;
+	padding: 2px 8px;
+	margin: 0px;
+}
+
+.table_entry_update
+{
+	background-color: #05a;
+	color: #fd7;
+	padding: 2px 8px;
+	margin: 0px;
+}
+
+.table_entry_delete
+{
+	background-color: #832;
+	color: #fd7;
+	margin: 0px;
+	padding: 2px 8px;
+	margin: 0px;
+}
+
+.tr
+{
+	
+	min-height: 738px;
+}
+
+.submit:hover
+{
+	opacity: 0.8;
+}
+
+::placeholder {
+  color: #9BC;
+  opacity: 1; /* Firefox */
+}
+.form-control::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+            color: #9BC;
+            opacity: 1; /* Firefox */
+}
+.form-control:-ms-input-placeholder { /* Internet Explorer 10-11 */
+            color: #9BC;
+}
+.form-control::-ms-input-placeholder { /* Microsoft Edge */
+						color: #9BC;
+}
+
+/* ### ### ### */
+
+/* Go to top button; adopted from: https://www.w3schools.com/howto/howto_js_scroll_to_top.asp */
+#toTop
+{
+	display: none;
+	position: fixed;
+	bottom: 20px;
+	right: 30px;
+	z-index: 99;
+	border: none;
+	outline: none;
+	color: #fd7;
+	background-color: #124;
+	cursor: pointer;
+	padding: 15px;
+	border: 2px solid #334;
+	border-radius: 4px;
+	opacity: .6;
+}
+
+#toTop:hover
+{
+	color: #ffd;
+}
+
+
+/* ### ### ###*/
+
+/* Links to other, external websites */
+.links
+{
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	background-color: #334;
+	margin-top: 20px;
+	padding: 0;
+}	
+
+
+.links a:link
+{
+	text-decoration: none;
+	display: block;
+	padding: 0px 15px;
+	color: #eee;
+}
+
+.links a:visited
+{
+	text-decoration: none;
+	color: #eee
+}
+
+.links a:hover
+{
+	text-decoration: none;
+	color: #eee
+}
+
+.links a:active
+{
+	text-decoration: none;
+	color: #eee
+}
+
+/* Defines style for the boxes in the footer linking to the GMIT website */
+.gmit
+{
+	width: 50%;
+	padding: 10px 0;
+	float: left;
+}	
+
+.gmit:hover
+{
+	background-color: #901329; /* #5c8bc1; - pale blue as alternative */
+}	
+
+/* Defines style for the box linking to my GitHub website */
+.gh
+{
+	width: 50%;
+	padding: 10px 0;
+	float: left;
+}	
+
+.gh:hover
+{
+	background-color: #000;
+}	
+
+
+/* ### ### ### */
+
+/* Footer: author, copyright, thanks etc */
+.info
+{
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	padding: 10px;
+	color: #bbd;
+	font-size: 10px;
+	z-index: 0
+}	

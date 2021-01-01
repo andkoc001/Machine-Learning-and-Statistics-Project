@@ -1,12 +1,18 @@
 <!doctype html>
 
-<!-- Copied and adapted from the lacture materials. -->
-<!-- Copied and adapted from Bootstrap homepage. -->
+<!-- Data Representation Project, GMIT 2020 -->
+<!-- Author: Andrzej Kocielski, G00376291@gmit.ie -->
+<!-- GitHub: https://github.com/andkoc001/Machine-Learning-and-Statistics-Project -->
+<!-- Lecturer: Dr. Ian McLoughlin -->
+<!-- Based on the lacture materials -->
 
 <html lang="en">
 
 <head>
   <title>Machine Learning and Statistics Project</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="Machine Learning and Statistics Project, GMIT 2021">
+  <meta name="author" content="Andrzej Kocielski, G00376291@gmit.ie">
 
   <!-- Required meta tags -->
   <meta charset="utf-8">
@@ -16,95 +22,164 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
     integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
+  <!-- Reference to external style file (overrides the bootstrap style, because it is placed below in this file -->
+  <link rel="stylesheet" href="../static/style.css" type="text/css" />
 
   <!-- AJAX reference to jquery -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 </head>
 
-<body>
-  <h1>Hello, welcome to inner side of the index.html file!</h1>
-
-  <h1>Testing getting data using AJAX</h1>
-  <button onclick="readJSON()">Get bitcoin value from coindesk.com </button>
-  <div id="output"></div>
-
-  <h1>Testing NumPy generated random numbers </h1>
-  <div class="container">
-    <div class="row">
-      <div class="col-sm">
-        <input class="form-control" id="output" type="text" placeholder="Random number here.." readonly>
+<body onload="showDefaultDisplay()">
+  <header>
+    <div>
+      <h1 class="logo_title">Machine Learning and Statistics Project</h1>
+      <div class="picture">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Wind_power_plants_in_Xinjiang%2C_China.jpg/320px-Wind_power_plants_in_Xinjiang%2C_China.jpg"
+          alt="Source: https://en.wikipedia.org/wiki/File:Wind_power_plants_in_Xinjiang,_China.jpg" /></br>
+        <div class="caption"> Image source: <a
+            href="https://en.wikipedia.org/wiki/File:Wind_power_plants_in_Xinjiang,_China.jpg"
+            target="_blank">Wikipedia</a></div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-sm">
-        <button type="button" class="btn btn-success" id="uniform-button">Uniform</button>
+  </header>
+
+  <main class="mainsection">
+    <section class="core">
+      <h1>Hello, welcome to my project webpage!</h1>
+    </section>
+
+    <section class="core">
+      <h2>Wind generated power output</h2>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm">
+            <input class="form-control" id="output" type="text" placeholder="Predicted power output..." readonly>
+          </div>
+        </div>
+        <div class="row">
+          <form>
+            <!-- Hide the form initially -->
+            <div class="core" id='enterDataForm' style="display:block; padding: 0px 13px;">
+
+              <!-- Category part of form -->
+              <span style="float: left; padding-top: 6px;">Enter wind speed in range 5-25 and hit
+                the Appply button to predict the power output.</span>
+              <input type="number" class="form-control" id="formInputPrice" placeholder="Wind speed">
+
+              <!-- Create and update buttons -->
+              <button type="button" id="doApplyButton" onclick="doApply()">Apply ML prediction</button>
+            </div>
+          </form>
+        </div>
       </div>
-      <div class="col-sm">
-        <button type="button" class="btn btn-primary" id="normal-button">Normal</button>
+    </section>
+
+    <section class="core">
+      <h2>Testing NumPy generated random numbers </h2>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm">
+            <input class="form-control" id="output" type="text" placeholder="Random number here.." readonly>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm">
+            <button type="button" class="btn btn-success" id="uniform-button">Uniform</button>
+          </div>
+          <div class="col-sm">
+            <button type="button" class="btn btn-primary" id="normal-button">Normal</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <section class="core">
+    <button onclick="readJSON()">Get bitcoin value from coindesk.com </button>
+    <div id="output"></div>
+  </section>
+
+  <footer>
+    <!-- This section holds links to the external websites -->
+    <div class="links">
+      <div style="width: 600px; margin-left: auto; margin-right: auto;">
+        <div class="gmit">
+          <a href="https://www.gmit.ie/" target="_blank"> GMIT </a>
+        </div>
+        <div class="gh">
+          <a href="https://github.com/andkoc001" target="_blank"> GitHub </a>
+        </div>
+        <div style="clear:both"></div>
       </div>
     </div>
-  </div>
+
+    <div class="info">
+      Andrzej Kocielski (G00376291@gmit.ie), 2021
+    </div>
+  </footer>
+
+  <!-- This button appears when the page is scrolled down bt 50px (see the Java Script file) and, when clicked, brings the web page back to the top -->
+  <button onclick="topFunction()" id="toTop" title="Top">Go to Top</button>
+
+</body>
+
+<!-- Script for getting data using AJAX -->
+<script>
+  function readJSON() {
+    $.ajax({
+      "url": "https://api.coindesk.com/v1/bpi/currentprice.json ",
+      "method": "GET",
+      "data": "",
+      "dataType": "JSON",
+      "success": function (result) {
+        //console.log(result);
+        var rate = result.bpi.EUR.rate
+        document.getElementById("output").innerText = rate;
+      },
+      "error": function (xhr, status, error) {
+        //console.log("error: " + status + " msg:" + error);
+        var rate = result.bpi.EUR.rate
+        document.getElementById("output").innerText = rate;
+      }
+    });
+  }
+</script>
 
 
-  <!-- Script for getting data using AJAX -->
-  <script>
-    function readJSON() {
-      $.ajax({
-        "url": "https://api.coindesk.com/v1/bpi/currentprice.json ",
-        "method": "GET",
-        "data": "",
-        "dataType": "JSON",
-        "success": function (result) {
-          //console.log(result);
-          var rate = result.bpi.EUR.rate
-          document.getElementById("output").innerText = rate;
-        },
-        "error": function (xhr, status, error) {
-          //console.log("error: " + status + " msg:" + error);
-          var rate = result.bpi.EUR.rate
-          document.getElementById("output").innerText = rate;
-        }
-      });
-    }
-  </script>
+<!-- Optional JavaScript; choose one of the two! -->
 
+<!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+<!-- Changed from slim to full jQuery. -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"
+  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 
-  <!-- Optional JavaScript; choose one of the two! -->
-
-  <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
-  <!-- Changed from slim to full jQuery. -->
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js"
-    integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
-    crossorigin="anonymous"></script>
-
-  <!-- Option 2: jQuery, Popper.js, and Bootstrap JS
+<!-- Option 2: jQuery, Popper.js, and Bootstrap JS
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
     -->
 
 
-  <script>
-    // Adapted from stack overflow posts.
-    $("#normal-button").click(function (e) {
-      e.preventDefault();
-      $.getJSON("/api/normal", function (data) {
-        $('#output').val(data.value);
-      });
+<script>
+  // Adapted from stack overflow posts.
+  $("#normal-button").click(function (e) {
+    e.preventDefault();
+    $.getJSON("/api/normal", function (data) {
+      $('#output').val(data.value);
     });
-    $("#uniform-button").click(function (e) {
-      e.preventDefault();
-      $.getJSON("/api/uniform", function (data) {
-        $('#output').val(data.value);
-      });
+  });
+  $("#uniform-button").click(function (e) {
+    e.preventDefault();
+    $.getJSON("/api/uniform", function (data) {
+      $('#output').val(data.value);
     });
-  </script>
+  });
+</script>
 
-
-
-</body>
+<script src="../static/data_rep_project.js"></script>
 
 </html>
