@@ -18,7 +18,7 @@ import flask as fl
 # numpy for numerical work.
 import numpy as np
 # import Python functions from another file
-from static.wind_power import poly_reg # check the names here !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+from wind_power import poly_reg # check the names here !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 # Create a new web app instance
 app = fl.Flask(__name__)
@@ -44,7 +44,7 @@ def normal():
     return {"value": np.random.normal()}
 
 # Predict the power output based on wind speed
-@app.route('/wind-power/<float:wind>')
+@app.route('/wind-power')
 def poly_reg(wind):
 
     predict = wind_power.poly_reg(wind)

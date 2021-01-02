@@ -12,7 +12,7 @@ Lecturer: Dr. Ian McLoughlin
 
 // predict the power output
 function doApplyModel() {
-  var inputWind = document.getElementById('user_input').value
+  var inputWind = parseInt(document.getElementById('user_input').value);
   // console.log(inputWind)
   // check inputs if in turbine operative range
   if ((inputWind <= 0) || (inputWind > 24.5)) {
