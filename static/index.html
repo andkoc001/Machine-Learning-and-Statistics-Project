@@ -26,7 +26,7 @@
   <link rel="stylesheet" href="../static/style.css" type="text/css" />
 
   <!-- AJAX reference to jquery -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
   <!-- prevent favicon 404 error -->
   <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgo=">
@@ -59,16 +59,19 @@
         <div class="row">
           <form class="col-sm">
             <div>
-              <span style="float: left; padding-top: 6px;">Enter wind speed in range 0-24.5 and hit
-                the Appply button to predict the power output.</span>
+              <span style="float: left; padding-top: 6px;">Enter wind speed in range 0-25 and hit
+                the Apply button to predict the power output with the desired ML model.</span>
               <input type="number" class="form-control" id="user_input" placeholder="Wind speed">
-              <button type="button" id="doApplyButton" onclick="doApplyModel()">Apply ML prediction</button>
+              <button type="button" id="doApplyButton_linReg" onclick="doApplyModel_linReg()">Apply liniear
+                regression</button>
+              <button type="button" id="doApplyButton_polyReg" onclick="doApplyModel_polyReg()">Apply polynomial
+                regression (5th order)</button>
             </div>
           </form>
         </div>
         </br>
         <div class="row">
-          <span>Expected power output: &nbsp;</span><span id="power_output"></span>
+          <span>Predicted power output: &nbsp;</span><span id="power_output"></span>
         </div>
     </section>
 

@@ -20,6 +20,15 @@ import numpy as np
 # import Python functions from another file
 from wind_power import poly_reg # check the names here !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
+
+import pandas as pd
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import PolynomialFeatures
+from sklearn.pipeline import make_pipeline
+import matplotlib.pyplot as plt
+
+
 # Create a new web app instance
 app = fl.Flask(__name__)
 
@@ -44,10 +53,13 @@ def normal():
     return {"value": np.random.normal()}
 
 # Predict the power output based on wind speed
-@app.route('/api/wind-prediction/<int:wind>')
-def poly_reg(wind):
-    result = poly_reg(wind_speed)
-    return {"value": str([result])}
+@app.route('/api/prediction/<int:wind>')
+def poly_r(wind):
+    # print("tututu ")
+    # result = wind * 2
+    result = poly_reg(wind)
+    # return {"value": str([result])}
+    return "Predicted result: " + str(result)
 
 # ------------------
 # Check dependencies

@@ -11,26 +11,47 @@ Lecturer: Dr. Ian McLoughlin
 // Machine Learning model 
 
 // predict the power output
-function doApplyModel() {
+function doApplyModel_polyReg() {
 
-  $("#doApplyButton").click(function (e) {
+  $("#doApplyButton_polyReg").click(function (e) {
     e.preventDefault();
     var inputWind = parseInt(document.getElementById('user_input').value);
     console.log("Here 1. Input read: " + inputWind)
-    // check inputs if in turbine operative range
+    // check inputs if within turbine operative range
     if ((inputWind >= 0) && (inputWind <= 25)) {
       console.log("Here 2. Condition checked (good): " + inputWind);
-      $.getJSON("/api/wind-prediction" + encodeURI(inputWind), function (data) {
+      $.getJSON("/api/prediction/" + encodeURI(inputWind), function (data) {
         console.log("Here 3. Model applied and the prediction is: " + data)
         $('#power_output').val(parseFloat(data.value).toFixed(2));
       });
     } else {
-      console.log("here 4 - out of range: " + inputWind);
+      console.log("Here 4 - out of range: " + inputWind);
       $("power_output").val("Wrong input. It should be a number between 0 and 25.");
     };
   });
 };
+// function doApplyModel_polyReg() {
 
+//   var inputWind = parseInt(document.getElementById('user_input').value);
+
+//   $.ajax({
+//     "url": "/api/prediction/" + inputWind,
+//     "method": "GET",
+//     "data": "",
+//     "dataType": "JSON",
+//     "success": function (result) {
+//       console.log(result);
+//       output = document.getElementById("power_output");
+//       output.innerText = result;
+//       output.style = "display: block;";
+
+
+//     },
+//     "error": function (xhr, status, error) {
+//       console.log("error: " + status + " msg:" + error);
+//     }
+//   });
+// }
 
 // ////////////////////
 // random number generator 

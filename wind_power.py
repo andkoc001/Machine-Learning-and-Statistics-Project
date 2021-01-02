@@ -111,16 +111,17 @@ def poly_reg(wind_speed):
 # -------------------------------------
 # Adapted from https://towardsdatascience.com/polynomial-regression-with-scikit-learn-what-you-should-know-bed9d3296f2
 # import libraries and packages - see description above
-import numpy as np
-import pandas as pd
-from sklearn.linear_model import LinearRegression
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import PolynomialFeatures
-from sklearn.pipeline import make_pipeline
-import matplotlib.pyplot as plt
 
 def poly_reg(wind_speed):
     # Doc string to be added here
+
+    import numpy as np
+    import pandas as pd
+    from sklearn.linear_model import LinearRegression
+    from sklearn.model_selection import train_test_split
+    from sklearn.preprocessing import PolynomialFeatures
+    from sklearn.pipeline import make_pipeline
+    import matplotlib.pyplot as plt
 
     # load the data set from file
     df_raw = pd.read_csv(r"powerproduction.txt")
@@ -161,7 +162,7 @@ def poly_reg(wind_speed):
     # plt.title("Polynomial regression with degree "+str(degree))
     # plt.show()
     
-    return result[0]
+    return "{:.1f}".format(result[0])
 
 
 # poly_reg(test)
