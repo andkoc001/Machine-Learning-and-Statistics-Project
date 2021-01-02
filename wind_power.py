@@ -164,7 +164,7 @@ def poly_reg(wind_speed):
     return result[0]
 
 
-poly_reg(test)
+# poly_reg(test)
 
 # ------------------
 # Check dependencies

@@ -12,18 +12,23 @@ Lecturer: Dr. Ian McLoughlin
 
 // predict the power output
 function doApplyModel() {
-  var inputWind = parseInt(document.getElementById('user_input').value);
-  // console.log(inputWind)
-  // check inputs if in turbine operative range
-  if ((inputWind <= 0) || (inputWind > 24.5)) {
-    console.log("here1 - out of range: " + inputWind);
-    document.getElementById("power_output").innerHTML = "Wrong input";
-  } else {
-    console.log("input: " + inputWind);
-    document.getElementById("power_output").innerHTML = inputWind;
-    // document.getElementById("power_output").innerText = inputWind;
 
-  };
+  $("#doApplyButton").click(function (e) {
+    e.preventDefault();
+    var inputWind = parseInt(document.getElementById('user_input').value);
+    console.log("Here 1. Input read: " + inputWind)
+    // check inputs if in turbine operative range
+    if ((inputWind >= 0) && (inputWind <= 25)) {
+      console.log("Here 2. Condition checked (good): " + inputWind);
+      $.getJSON("/api/wind-prediction" + encodeURI(inputWind), function (data) {
+        console.log("Here 3. Model applied and the prediction is: " + data)
+        $('#power_output').val(parseFloat(data.value).toFixed(2));
+      });
+    } else {
+      console.log("here 4 - out of range: " + inputWind);
+      $("power_output").val("Wrong input. It should be a number between 0 and 25.");
+    };
+  });
 };
 
 

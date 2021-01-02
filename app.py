@@ -44,12 +44,10 @@ def normal():
     return {"value": np.random.normal()}
 
 # Predict the power output based on wind speed
-@app.route('/wind-power')
+@app.route('/api/wind-prediction/<int:wind>')
 def poly_reg(wind):
-
-    predict = wind_power.poly_reg(wind)
-
-    return predict
+    result = poly_reg(wind_speed)
+    return {"value": str([result])}
 
 # ------------------
 # Check dependencies
