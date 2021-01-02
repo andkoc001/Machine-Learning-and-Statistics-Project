@@ -17,7 +17,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import PolynomialFeatures
 
 # load the data set from file
-df_raw = pd.read_csv(r"../powerproduction.txt")
+df_raw = pd.read_csv(r"./powerproduction.txt")
 
 # clean the dataset by removing all observations where the power output is zero
 df = df_raw[df_raw['power'] != 0]
@@ -72,7 +72,7 @@ lin_reg(test)
 def poly_reg(wind_speed):
 
     # load the data set from file
-    df_raw = pd.read_csv(r"../powerproduction.txt")
+    df_raw = pd.read_csv(r"./powerproduction.txt")
 
     # clean the dataset by removing all observations where the power output is zero
     df = df_raw[df_raw['power'] != 0]

@@ -20,7 +20,7 @@ import numpy as np
 # import Python functions from another file
 from static.wind_power import poly_reg # check the names here !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-# Create a new web app.
+# Create a new web app instance
 app = fl.Flask(__name__)
 
 
@@ -34,21 +34,16 @@ def home():
     return app.send_static_file('index.html')
 
 # Add uniform route.
-
-
 @app.route('/api/uniform')
 def uniform():
     return {"value": np.random.uniform()}
 
 # Add normal route.
-
-
 @app.route('/api/normal')
 def normal():
     return {"value": np.random.normal()}
 
 # Predict the power output based on wind speed
-
 @app.route('/wind-power/<float:wind>')
 def poly_reg(wind):
 
