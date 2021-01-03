@@ -46,8 +46,8 @@ python -m flask run
 C) Docker
 
 ```bash
-docker build . -t app-image
-docker run --name app-container -d -p 5000:5000 app-image
+docker build . -t wind-power-app-image
+docker run --name wind-power-app-container -d -p 5000:5000 wind-power-app-image
 ```
 
 #### Viewing Notebook
