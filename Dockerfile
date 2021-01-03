@@ -1,4 +1,4 @@
-FROM python:3
+FROM python:3.7.9
 
 WORKDIR /usr/src/app
 
@@ -10,4 +10,4 @@ COPY . .
 
 ENV FLASK_APP=app.py
 
-CMD python -m flask run
+CMD flask run --host=0.0.0.0

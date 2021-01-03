@@ -27,7 +27,7 @@ The project is done in a Jupyter Notebook [Powerproduction_ML.ipynb](https://git
 
 #### Web App
 
-In order to open the web app, execute the following commands in the terminal
+In order to open the web app, inside the directory containing the repository (download it from this github repository, keeping the directory structure intact) and execute the following commands in the terminal.
 
 A) Linux
 
@@ -46,8 +46,8 @@ python -m flask run
 C) Docker
 
 ```bash
-docker build . -t wind-power-app-image
-docker run --name wind-power-app-container -d -p 5000:5000 wind-power-app-image
+docker build . -t wind-power-app
+docker run -i -t -p 5000:5000 --rm wind-power-app 
 ```
 
 #### Viewing Notebook
@@ -96,7 +96,9 @@ General, high-level, reference sources are listed below. References to specific 
 
 ### Regarding the tools used
 
-- Docker - ...
+- Docker - [What is a container](https://www.docker.com/resources/what-container)
+- Jeff Hale - [15 Docker commands you should know](https://towardsdatascience.com/15-docker-commands-you-should-know-970ea5203421)
+- Itamar Turner-Trauring - [The best Docker base image for your Python application (April 2020)](https://pythonspeed.com/articles/base-image-python-docker-images/)
 
 ___
 
