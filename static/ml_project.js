@@ -22,13 +22,13 @@ function doApplyModel_polyReg() {
       // console.log("Here 2. Condition checked (good): " + inputWind);
       inputWind = parseInt(inputWind);
       $.getJSON("/api/prediction/" + encodeURI(inputWind), function (data) {
-        $('#power_output').val(parseFloat(data).toFixed(2));
+        $('#power_output_polyReg').val(parseFloat(data).toFixed(2));
         console.log("Here 3. Model applied and the prediction is: " + data);
         // $('#power_output').val("Here 3. Model applied and the prediction is: " + data);
       });
     } else {
       console.log("Here 4 - out of range: " + inputWind);
-      $("#power_output").val("Wrong input. It should be a number between 0 and 25.");
+      $("#power_output_polyReg").val("Wrong input. It should be a number between 0 and 25.");
     };
   });
 };
