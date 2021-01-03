@@ -59,7 +59,7 @@ def poly_r(wind):
     # result = wind * 2
     result = poly_reg(wind)
     # return {"value": str([result])}
-    return "Predicted result: " + str(result)
+    return result
 
 # ------------------
 # Check dependencies

@@ -153,7 +153,8 @@ def poly_reg(wind_speed):
     # make prediction
     # result = polyreg.predict(X_test)
     result = polyreg.predict([[wind_speed]]) # for a specified wind speed
-    print(f"Result: {result[0]:.1f}")
+    # print(f"Result: {result:.1f}")
+    result = str(result[0])
 
     # Creating the plot
     # plt.figure()
@@ -162,7 +163,8 @@ def poly_reg(wind_speed):
     # plt.title("Polynomial regression with degree "+str(degree))
     # plt.show()
     
-    return "{:.1f}".format(result[0])
+    # return "{:.1f}".format(result[0])
+    return result
 
 
 # poly_reg(test)

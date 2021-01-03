@@ -60,10 +60,10 @@
           <form class="col-sm">
             <div>
               <span style="float: left; padding-top: 6px;">Enter wind speed in range 0-25 and hit
-                the Apply button to predict the power output with the desired ML model.</span>
+                one of the buttons below to predict the power output with the desired ML model.</span>
               <input type="number" class="form-control" id="user_input" placeholder="Wind speed">
-              <button type="button" id="doApplyButton_linReg" onclick="doApplyModel_linReg()">Apply liniear
-                regression</button>
+              <button disabled type="button" id="doApplyButton_linReg" onclick="doApplyModel_linReg()">Apply liniear
+                regression (disabled)</button>
               <button type="button" id="doApplyButton_polyReg" onclick="doApplyModel_polyReg()">Apply polynomial
                 regression (5th order)</button>
             </div>
@@ -71,7 +71,12 @@
         </div>
         </br>
         <div class="row">
-          <span>Predicted power output: &nbsp;</span><span id="power_output"></span>
+          <span>Predicted power output: &nbsp;</span><span id="power_output_aaa"> </span>
+        </div>
+        <div class="row">
+          <div class="col-sm">
+            <input class="form-control" id="power_output" placeholder="Prediction here..." readonly>
+          </div>
         </div>
     </section>
 
