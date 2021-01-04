@@ -28,18 +28,32 @@
 test = 17  # test wind speed value
 
 
-'''
 # -------------------------------------
 # Linear regression ML script
 # -------------------------------------
 def lin_reg(wind_speed):
     # Doc string to be added here
 
-    # random_state (seed) is set for consistancy
-    X_train, X_test, y_train, y_test = train_test_split(
-        X, y, test_size=0.3, random_state=2020)
+    # import libraries and packages
+    import numpy as np
+    import pandas as pd
+    from sklearn.linear_model import LinearRegression
+    from sklearn.model_selection import train_test_split
+    from sklearn.preprocessing import PolynomialFeatures
 
-    # convert the array shape and unify the lengths
+    # load the data set from file
+    df_raw = pd.read_csv(r"powerproduction.txt")
+
+    # clean the dataset by removing all observations where the power output is zero
+    df = df_raw[df_raw['power'] !=0]
+
+    # assign "speed" and "power" sets to variables X and y
+    X, y = df["speed"], df["power"]
+
+    # random_state (seed) is set for consistancy
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=2020)
+
+    # reshape the train set array
     X_train = X_train.values.reshape(-1, 1)
     y_train = y_train.values.reshape(-1, 1)
     X_test = X_test.values.reshape(-1, 1)
@@ -50,18 +64,90 @@ def lin_reg(wind_speed):
     # Train/fit lin_reg_model on the training data.
     lin_reg_model.fit(X_train, y_train)
 
-    # input wind speed for prediction
-    x = np.array([[wind_speed]])
-    # test.shape
+    # convert the the passed wind speed into an array
+    # x = np.array([[wind_speed]])
+    # # test.shape
 
-    # define prediction
-    prediction = lin_reg_model.predict(x)
+    # make prediction
+    result = lin_reg_model.predict([[wind_speed]])
 
-    return print(f"Simple linear regression prediction for wind speed {test}: \t{float(prediction):.4}")
+    # convert to string
+    result = str(float(result[0]))
+    
+    # return print(f"Simple linear regression prediction for wind speed {test}: \t{float(result):.1}")
+    return result
+
+# lin_reg(test)
 
 
-lin_reg(test)
 
+# -------------------------------------
+# Polynomial (5th order) regression ML script
+# -------------------------------------
+# Adapted from https://towardsdatascience.com/polynomial-regression-with-scikit-learn-what-you-should-know-bed9d3296f2
+# import libraries and packages - see description above
+
+def poly_reg(wind_speed):
+    # Doc string to be added here
+
+    # import libraries and packages
+    import numpy as np
+    import pandas as pd
+    from sklearn.linear_model import LinearRegression
+    from sklearn.model_selection import train_test_split
+    from sklearn.preprocessing import PolynomialFeatures
+    from sklearn.pipeline import make_pipeline
+    import matplotlib.pyplot as plt
+
+    # load the data set from file
+    df_raw = pd.read_csv(r"powerproduction.txt")
+
+    # clean the dataset by removing all observations where the power output is zero
+    df = df_raw[df_raw['power'] !=0]
+
+    # assign "speed" and "power" sets to variables X and y
+    X, y = df["speed"], df["power"]
+
+    # random_state (seed) is set for consistancy
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=2020)
+
+    # reshape train set arrays
+    X_train = X_train.values.reshape(-1,1)
+    # print(X_train.shape)
+    # print(y_train.shape)
+
+    # create a model instance
+    degree = 5 # polynomial order
+    polyreg = make_pipeline(PolynomialFeatures(degree),LinearRegression())
+    # train model
+    polyreg.fit(X_train,y_train)
+
+    # reshape test set
+    X_test = X_test.values.reshape(-1,1)
+    # print(X_test.shape)
+    # print(y_test.shape)
+
+    # make prediction for the passed wind speed
+    # result = polyreg.predict(X_test)
+    result = polyreg.predict([[wind_speed]]) # for a specified wind speed
+    # print(f"Result: {result:.1f}")
+    result = str(result[0])
+
+    # Creating the plot
+    # plt.figure()
+    # plt.scatter(X_train,y_train, alpha=.2)
+    # plt.plot(wind_speed,result,"rx")
+    # plt.title("Polynomial regression with degree "+str(degree))
+    # plt.show()
+    
+    # return "{:.1f}".format(result[0])
+
+    return result
+    
+# poly_reg(test)
+
+
+'''
 # -------------------------------------
 # Polynomial (7th order) regression ML script
 # -------------------------------------
@@ -105,70 +191,6 @@ def poly_reg(wind_speed):
     y_pred = poly_reg.predict(a)
     return print('predicted response: ', y_pred)
 '''
-
-# -------------------------------------
-# Polynomial (5th order) regression ML script
-# -------------------------------------
-# Adapted from https://towardsdatascience.com/polynomial-regression-with-scikit-learn-what-you-should-know-bed9d3296f2
-# import libraries and packages - see description above
-
-def poly_reg(wind_speed):
-    # Doc string to be added here
-
-    import numpy as np
-    import pandas as pd
-    from sklearn.linear_model import LinearRegression
-    from sklearn.model_selection import train_test_split
-    from sklearn.preprocessing import PolynomialFeatures
-    from sklearn.pipeline import make_pipeline
-    import matplotlib.pyplot as plt
-
-    # load the data set from file
-    df_raw = pd.read_csv(r"powerproduction.txt")
-
-    # clean the dataset by removing all observations where the power output is zero
-    df = df_raw[df_raw['power'] !=0]
-
-    # assign "speed" and "power" sets to variables X and y
-    X, y = df["speed"], df["power"]
-
-    # random_state (seed) is set for consistancy
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=2020)
-
-    # reshape train set
-    X_train = X_train.values.reshape(-1,1)
-    # print(X_train.shape)
-    # print(y_train.shape)
-
-    # train model
-    degree=5 # polynomial order
-    polyreg=make_pipeline(PolynomialFeatures(degree),LinearRegression())
-    polyreg.fit(X_train,y_train)
-
-    # reshape test set
-    X_test = X_test.values.reshape(-1,1)
-    # print(X_test.shape)
-    # print(y_test.shape)
-
-    # make prediction
-    # result = polyreg.predict(X_test)
-    result = polyreg.predict([[wind_speed]]) # for a specified wind speed
-    # print(f"Result: {result:.1f}")
-    result = str(result[0])
-
-    # Creating the plot
-    # plt.figure()
-    # plt.scatter(X_train,y_train, alpha=.2)
-    # plt.plot(wind_speed,result,"rx")
-    # plt.title("Polynomial regression with degree "+str(degree))
-    # plt.show()
-    
-    # return "{:.1f}".format(result[0])
-    return result
-
-
-# poly_reg(test)
-
 # ------------------
 # Check dependencies
 # ------------------

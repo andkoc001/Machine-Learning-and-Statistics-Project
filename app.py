@@ -18,7 +18,8 @@ import flask as fl
 # numpy for numerical work.
 import numpy as np
 # import Python functions from another file
-from wind_power import poly_reg # check the names here !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+from wind_power import poly_reg
+from wind_power import lin_reg
 
 
 import pandas as pd
@@ -53,10 +54,16 @@ def normal():
     return {"value": np.random.normal()}
 
 # Predict the power output based on wind speed
-@app.route('/api/prediction/<int:wind>')
+@app.route('/api/lin-reg-model/<int:wind>')
+def lin_r(wind):
+    # return "wind" 
+    result = lin_reg(wind)
+    # return {"value": str([result])}
+    return result
+
+# Predict the power output based on wind speed
+@app.route('/api/poly-reg-model/<int:wind>')
 def poly_r(wind):
-    # print("tututu ")
-    # result = wind * 2
     result = poly_reg(wind)
     # return {"value": str([result])}
     return result
