@@ -73,24 +73,37 @@
                 the power increases exponencially with the wind speed. Behind the rated speed, the produced output
                 remains approximately flat (or may decline gently), until it reaches the cut-off speed. At such speed,
                 the turbine is shut down in order to prevent them from taking damege.</p>
-              <p style="float: left; padding: 6px 0px;">Enter wind speed in range 0-25 and hit one of the buttons below
-                to predict the percentage of the rated power output with the desired ML model.</p>
-              <input type="number" class="form-control" id="user_input" placeholder="Wind speed">
-              <!-- <button type="button" id="doRandomButton" onclick="doRandom()" style="float: right;">Random (1-24)</button> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="core">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm">
+            <div style="text-align: justify;">
+              <p style="float: left; padding: 6px 0px;">Enter wind speed in range 1-25 and apply one of the ML models
+                below to predict the percentage of the rated power output.</p>
+              <p id="demo"></p>
+              <input type="number" class="form-control" id="user_input" placeholder="Enter wind speed">
+              <button type="button" id="doRandomButton" onclick="doRandom()" style="float: right;">Random
+                (4-24)</button>
             </div>
           </div>
         </div>
         </br>
 
-        <div class="row" style="margin-bottom: 12px;">
+        <div class="row">
           <div class="col-sm" id="models">
-            <div style="float: right;">
+            <div style="float: left;">
               <span style="float: left; padding: 6px 0px;">Apply machine learning model:</span>
             </div>
           </div>
           <div class="col-sm" id="results">
             <div>
-              <span style="float: left; padding: 6px 0px;">Predicted % of the rated power output:</span>
+              <span style="float: left; padding: 6px 0px;">Predicted output:</span>
             </div>
           </div>
           <div style="clear:both"></div>
@@ -98,54 +111,55 @@
 
         <!-- linear regression -->
         <div class="row" style="margin-bottom: 12px;">
-          <div class="col-sm">
-            <div style="float: right;">
-              <button type="button" id="doApplyButton_linReg" onclick="doApplyModel_linReg()">Liniear
-                regression</button>
-            </div>
+          <div class="col-sm"">
+            <div style=" float: left; width: 100%;">
+            <button type="button" id="doApplyButton_linReg" onclick="doApplyModel_linReg()" style="width: 100%;">Liniear
+              regression</button>
           </div>
-          <div class="col-sm">
-            <div>
-              <input class="form-control" id="power_output_linReg"
-                placeholder="Prediction here (simple linear regression)..." readonly style="margin: 4px 0px;">
-            </div>
-          </div>
-          <div style="clear:both"></div>
         </div>
-
-        <!-- polynomial regression -->
-        <div class="row" style="margin-bottom: 12px;">
-          <div class="col-sm">
-            <div style="float: right;">
-              <button type="button" id="doApplyButton_polyReg" onclick="doApplyModel_polyReg()">Polynomial
-                regression (5th order)</button>
-            </div>
-          </div>
-          <div class="col-sm">
-            <div>
-              <input class="form-control" id="power_output_polyReg"
-                placeholder="Prediction here (polynomial regression)..." readonly style="margin: 4px 0px;">
-            </div>
+        <div class="col-sm">
+          <div>
+            <input class="form-control" id="power_output_linReg"
+              placeholder="Prediction here (simple linear regression)..." readonly style="margin: 4px 0px;">
           </div>
         </div>
         <div style="clear:both"></div>
+      </div>
 
-        <!-- random forrest -->
-        <div class="row" style="margin-bottom: 12px; display: none;">
-          <div class="col-sm">
-            <div style="float: right;">
-              <button type="button" id="doApplyButton_randForr" onclick="doApplyModel_randForr()">Apply polynomial
-                regression (5th order)</button>
-            </div>
-          </div>
-          <div class="col-sm" style="display: none;">
-            <div>
-              <input class="form-control" id="power_output_randForr" placeholder="Prediction here (random forrest)..."
-                readonly style="margin: 4px 0px;">
-            </div>
+      <!-- polynomial regression -->
+      <div class="row" style="margin-bottom: 12px;">
+        <div class="col-sm">
+          <div style="float: left; width: 100%">
+            <button type="button" id="doApplyButton_polyReg" onclick="doApplyModel_polyReg()"
+              style="width: 100%;">Polynomial
+              regression (5th order)</button>
           </div>
         </div>
-        <div style="clear:both"></div>
+        <div class="col-sm">
+          <div>
+            <input class="form-control" id="power_output_polyReg"
+              placeholder="Prediction here (polynomial regression)..." readonly style="margin: 4px 0px;">
+          </div>
+        </div>
+      </div>
+      <div style="clear:both"></div>
+
+      <!-- random forrest -->
+      <div class="row" style="margin-bottom: 12px; display: none;">
+        <div class="col-sm">
+          <div style="float: right;">
+            <button type="button" id="doApplyButton_randForr" onclick="doApplyModel_randForr()">Apply polynomial
+              regression (5th order)</button>
+          </div>
+        </div>
+        <div class="col-sm" style="display: none;">
+          <div>
+            <input class="form-control" id="power_output_randForr" placeholder="Prediction here (random forrest)..."
+              readonly style="margin: 4px 0px;">
+          </div>
+        </div>
+      </div>
+      <div style="clear:both"></div>
 
       </div>
     </section>

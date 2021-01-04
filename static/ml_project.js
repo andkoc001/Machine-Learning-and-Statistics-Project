@@ -28,7 +28,7 @@ function doApplyModel_linReg() {
       });
     } else {
       console.log("Here 4 - out of range: " + inputWind);
-      $("#power_output_linReg").val("Wrong input. It should be a number between 0 and 25.");
+      $("#power_output_linReg").val("Wrong input; should be between 1 and 25.");
     };
   });
 };
@@ -51,7 +51,7 @@ function doApplyModel_polyReg() {
       });
     } else {
       console.log("Here 4 - out of range: " + inputWind);
-      $("#power_output_polyReg").val("Wrong input. It should be a number between 0 and 25.");
+      $("#power_output_polyReg").val("Wrong input; should be between 1 and 25.");
     };
   });
 };
@@ -60,9 +60,10 @@ function doApplyModel_polyReg() {
 // ////////////////////
 // random number 1-24
 function doRandom() {
-  var random_wind = (Math.floor(Math.random() * 24) + 1);
-  console.log("Random wind speed: " + random_wind);
-  document.getElementById("user_input").innerText = random_wind;
+  var random_wind = ((Math.floor(Math.random() * 21) + 4));
+  console.log("Random wind speed: " + parseInt(random_wind));
+  console.log(typeof (random_wind));
+  document.getElementById("user_input").value = random_wind;
 }
 
 // ////////////////////
