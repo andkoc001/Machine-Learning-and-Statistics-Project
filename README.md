@@ -27,7 +27,7 @@ The project is about development of a machine learning models in Jupyter Noteboo
 
 In the Jupyter Notebook [Powerproduction_ML.ipynb](https://github.com/andkoc001/data_synthesis/blob/master/Powerproduction_ML.ipynb), I have incorporated the research and described the project progress. It is illustrated the machine learning concepts and applied methods together with relevant code snippets. The notebook includes also the calculated outputs and plots with the accompanying descriptions.
 
-A web app is built upon the Flask framework. The local server hosts the selected machine learning models used in the project. An attractive front-end web page has been designed to present the results in a user-friendly way.
+A web app is built upon the Flask framework. The local server hosts the selected machine learning models used in the project. An attractive front-end web page has been designed to present the results in a user-friendly way. The app returns predicted values of power output, upon user input wind speed.
 
 The web app is also available in a virtualised container on Docker platform.
 
@@ -45,7 +45,7 @@ In order to open the web app localy, clone or download this github repository (k
 
 Option 1) __Virtual environment__
 
-Within the directory, create a new virtual environment, typing in the terminal 
+Within the directory, create a new virtual environment, typing in the terminal
 ```bash
 python -m venv venv
 ```
@@ -74,7 +74,7 @@ python -m flask run
 
 This will activate localhost server at <http://127.0.0.1:5000/>.
 
-To stop the server running, press `ctrl+c` in terminal.
+To stop the server running, press `ctrl`+`c` in terminal.
 
 In order to leave the virtual environment:
 ```bash
@@ -118,16 +118,13 @@ General, high-level, reference sources are listed below. References to specific 
 - [Jupyter Notebook](https://jupyter.org/documentation) - interactive python code editor
 - [NumPy](https://numpy.org/) - scientific computing with n-dimensional arrays
 - [Pandas](https://pandas.pydata.org/) - data analysis and manipulation tool
-- [Flask](https://flask.palletsprojects.com/en/1.1.x/) - web development framework
-- [Scipy](https://www.scipy.org/) - scientific computing library
 - [Scikit-learn](https://scikit-learn.org/) - machine learning library
-- [TensorFlow](https://www.tensorflow.org/) - low-level machine learning platform
-- [Keras](https://keras.io/) - high-level API for machine learning and deep learning
 - [Matplotlib](https://matplotlib.org/) - plotting library
 - [Seaborn](https://seaborn.pydata.org/) - data visualisation
 
-### Regarding virtualisation
- 
+### Regarding web app deployment and virtualisation
+
+- [Flask](https://flask.palletsprojects.com/en/1.1.x/) - web development framework
 - [Docker](https://www.docker.com/resources/what-container) - OS-level virtualisation platform
 
 ___
