@@ -23,7 +23,7 @@ The detailed project instruction can be found in the pdf [file](https://github.c
 
 ### Assignment delivery
 
-This project avails of several platforms commonly used in the industry, such as Jupyter Notebook, Web Server, Docker, etc.
+The project is about development of a machine learning models in Jupyter Notebook environment, using existing algorithms and tools, such as Keras, TensorFlow or Scikit learn packages. The applied models are subsequently assesst on their accuracy.
 
 In the Jupyter Notebook [Powerproduction_ML.ipynb](https://github.com/andkoc001/data_synthesis/blob/master/Powerproduction_ML.ipynb), I have incorporated the research and described the project progress. It is illustrated the machine learning concepts and applied methods together with relevant code snippets. The notebook includes also the calculated outputs and plots with the accompanying descriptions.
 
