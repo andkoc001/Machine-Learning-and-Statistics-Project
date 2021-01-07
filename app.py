@@ -20,6 +20,7 @@ import numpy as np
 # import Python functions from another file
 from wind_power import poly_reg
 from wind_power import lin_reg
+from wind_power import rand_forest
 
 
 import pandas as pd
@@ -43,16 +44,6 @@ app = fl.Flask(__name__)
 def home():
     return app.send_static_file('index.html')
 
-# Add uniform route.
-@app.route('/api/uniform')
-def uniform():
-    return {"value": np.random.uniform()}
-
-# Add normal route.
-@app.route('/api/normal')
-def normal():
-    return {"value": np.random.normal()}
-
 # Predict the power output based on wind speed
 @app.route('/api/lin-reg-model/<int:wind>')
 def lin_r(wind):
@@ -67,6 +58,24 @@ def poly_r(wind):
     result = poly_reg(wind)
     # return {"value": str([result])}
     return result
+
+# Predict the power output based on wind speed
+@app.route('/api/rand-forest-model/<int:wind>')
+def rand_f(wind):
+    result = rand_forest(wind)
+    # return {"value": str([result])}
+    return result
+
+
+# Add uniform route.
+@app.route('/api/uniform')
+def uniform():
+    return {"value": np.random.uniform()}
+
+# Add normal route.
+@app.route('/api/normal')
+def normal():
+    return {"value": np.random.normal()}
 
 # ------------------
 # Check dependencies

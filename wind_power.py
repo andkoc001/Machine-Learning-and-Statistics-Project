@@ -44,8 +44,13 @@ def lin_reg(wind_speed):
     # load the data set from file
     df_raw = pd.read_csv(r"powerproduction.txt")
 
-    # clean the dataset by removing all observations where the power output is zero
-    df = df_raw[df_raw['power'] !=0]
+    # clean the dataset by removing distorting observations
+    # remove the observations where wind speed is less than 6 and the power output greated than 5 - these readings are considered affected by noise
+    df = df_raw.drop(df_raw.loc[(df_raw.power > 5) & (df_raw.speed < 4)].index)
+    # remove the observations where wind speed greater than 10 and power output is zero - these are considered errous readings (e.g. due to maintenance)
+    df = df.drop(df.loc[(df.power == 0) & (df.speed > 10)].index)
+    # remove the observations where wind power output is greater than 110 - these are considered errous readings (noise)
+    df = df.drop(df.loc[(df.power > 110)].index)
 
     # assign "speed" and "power" sets to variables X and y
     X, y = df["speed"], df["power"]
@@ -85,7 +90,6 @@ def lin_reg(wind_speed):
 # Polynomial (5th order) regression ML script
 # -------------------------------------
 # Adapted from https://towardsdatascience.com/polynomial-regression-with-scikit-learn-what-you-should-know-bed9d3296f2
-# import libraries and packages - see description above
 
 def poly_reg(wind_speed):
     # Doc string to be added here
@@ -102,8 +106,13 @@ def poly_reg(wind_speed):
     # load the data set from file
     df_raw = pd.read_csv(r"powerproduction.txt")
 
-    # clean the dataset by removing all observations where the power output is zero
-    df = df_raw[df_raw['power'] !=0]
+    # clean the dataset by removing distorting observations
+    # remove the observations where wind speed is less than 6 and the power output greated than 5 - these readings are considered affected by noise
+    df = df_raw.drop(df_raw.loc[(df_raw.power > 5) & (df_raw.speed < 4)].index)
+    # remove the observations where wind speed greater than 10 and power output is zero - these are considered errous readings (e.g. due to maintenance)
+    df = df.drop(df.loc[(df.power == 0) & (df.speed > 10)].index)
+    # remove the observations where wind power output is greater than 110 - these are considered errous readings (noise)
+    df = df.drop(df.loc[(df.power > 110)].index)
 
     # assign "speed" and "power" sets to variables X and y
     X, y = df["speed"], df["power"]
@@ -147,50 +156,71 @@ def poly_reg(wind_speed):
 # poly_reg(test)
 
 
-'''
 # -------------------------------------
-# Polynomial (7th order) regression ML script
+# Random Forest ML script
 # -------------------------------------
-def poly_reg(wind_speed):
+# https://www.geeksforgeeks.org/random-forest-regression-in-python/
+
+def rand_forest(wind_speed):
+    # Doc string to be added here
+
+    # import libraries and packages
+    import numpy as np
+    import pandas as pd
+    from sklearn.ensemble import RandomForestRegressor 
+    from sklearn.model_selection import train_test_split
 
     # load the data set from file
     df_raw = pd.read_csv(r"powerproduction.txt")
 
-    # clean the dataset by removing all observations where the power output is zero
-    df = df_raw[df_raw['power'] != 0]
+    # clean the dataset by removing distorting observations
+    # remove the observations where wind speed is less than 6 and the power output greated than 5 - these readings are considered affected by noise
+    df = df_raw.drop(df_raw.loc[(df_raw.power > 5) & (df_raw.speed < 4)].index)
+    # remove the observations where wind speed greater than 10 and power output is zero - these are considered errous readings (e.g. due to maintenance)
+    df = df.drop(df.loc[(df.power == 0) & (df.speed > 10)].index)
+    # remove the observations where wind power output is greater than 110 - these are considered errous readings (noise)
+    df = df.drop(df.loc[(df.power > 110)].index)
 
-    # reshape as required
-    X = df.iloc[:, 0].values.reshape(-1, 1)
-    y = df.iloc[:, 1]
+    # assign "speed" and "power" sets to variables X and y
+    X, y = df["speed"], df["power"]
 
-    # develop a regression model
-    poly = PolynomialFeatures(degree=7)  # 7th polynomial order
-    X_poly = poly.fit_transform(X)
+    # random_state (seed) is set for consistancy
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=2020)
 
-    # ask our model to fit the data.
-    poly_reg = LinearRegression().fit(X_poly, y)
+    # reshape the train set array
+    X_train = X_train.values.reshape(-1, 1)
+    y_train = y_train.values
+    X_test = X_test.values.reshape(-1, 1)
 
-    # perform regression to predict the power output out of wind speed
-    y_pred = poly_reg.predict(X_poly)
+    # Fitting Random Forest Regression to the dataset 
+    # create regressor instance 
+    rand_forest_model = RandomForestRegressor(n_estimators = 100, random_state = 2020) 
 
-    # input wind speed for prediction
+    # fit the regressor with the train data subset
+    rand_forest_model.fit(X_train, y_train) 
+    
+    # predict test set
+    # test_result = rand_forest_model.predict(X_test) 
+    
+    # convert the the passed wind speed variable into an array
     x = np.array([[wind_speed]])
+    # print(x.shape)
 
-    # define prediction
-    #  prediction = (-5.11800967e-06*pow(x, 7)) + 4.48301902e-04*pow(x, 6) - 1.52309426e-02*pow(x, 5) + 2.50368085e-01 * \
-    #     pow(x, 4) - 2.04365136e+00*pow(x, 3) + 8.13376871e+00 * \
-    #     pow(x, 2) - 1.38470256e+01*pow(x, 1) + 10.91407191*pow(x, 0)
+    # make prediction
+    result = rand_forest_model.predict([[wind_speed]])
 
-    # return print(f"Polynomial regression prediction for wind speed {test}: \t{float(prediction):.4}")
+    # print(type(result))
+    result = str(float(result[0]))
+    # print(type(result))
+    print(result)
     
-    
-    a = PolynomialFeatures(degree=8, include_bias=False).fit_transform(wind_speed)
-    a.reshape(-1, 1)
-    print(a.shape)
-    print(a)
-    y_pred = poly_reg.predict(a)
-    return print('predicted response: ', y_pred)
-'''
+    # return print(f"Random forest prediction for wind speed {test}: \t{result}")
+    return result
+
+
+# rand_forest(test)
+
+
 # ------------------
 # Check dependencies
 # ------------------

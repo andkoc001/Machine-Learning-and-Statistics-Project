@@ -8,7 +8,7 @@ Lecturer: Dr. Ian McLoughlin
 
 
 // ////////////////////
-// Machine Learning model 
+// Machine Learning models 
 
 // predict the power output from simlple linear regression
 function doApplyModel_linReg() {
@@ -16,18 +16,18 @@ function doApplyModel_linReg() {
   $("#doApplyButton_linReg").click(function (e) {
     e.preventDefault();
     var inputWind = parseInt(document.getElementById('user_input').value);
-    console.log("Here 1. Input read: " + inputWind)
+    console.log("Here linear 1. Input read: " + inputWind)
     // check inputs if within turbine operative range
-    if ((inputWind >= 0) && (inputWind <= 25)) {
-      console.log("Here 2. Condition checked (good): " + inputWind);
+    if ((inputWind >= 1) && (inputWind <= 25)) {
+      console.log("Here linear 2. Condition checked (good): " + inputWind);
       inputWind = parseInt(inputWind);
       $.getJSON("/api/lin-reg-model/" + encodeURI(inputWind), function (data) {
         $('#power_output_linReg').val(parseFloat(data).toFixed(2));
-        console.log("Here 3. Model applied and the prediction is: " + data);
+        console.log("Here linear 3. Model applied and the prediction is: " + data);
         // $('#power_output').val("Here 3. Model applied and the prediction is: " + data);
       });
     } else {
-      console.log("Here 4 - out of range: " + inputWind);
+      console.log("Here linear 4 - out of range: " + inputWind);
       $("#power_output_linReg").val("Wrong input; should be between 1 and 25.");
     };
   });
@@ -39,19 +39,42 @@ function doApplyModel_polyReg() {
   $("#doApplyButton_polyReg").click(function (e) {
     e.preventDefault();
     var inputWind = parseInt(document.getElementById('user_input').value);
-    console.log("Here 1. Input read: " + inputWind)
+    console.log("Here poly 1. Input read: " + inputWind)
     // check inputs if within turbine operative range
-    if ((inputWind >= 0) && (inputWind <= 25)) {
-      console.log("Here 2. Condition checked (good): " + inputWind);
+    if ((inputWind >= 1) && (inputWind <= 25)) {
+      console.log("Here poly 2. Condition checked (good): " + inputWind);
       inputWind = parseInt(inputWind);
       $.getJSON("/api/poly-reg-model/" + encodeURI(inputWind), function (data) {
         $('#power_output_polyReg').val(parseFloat(data).toFixed(2));
-        console.log("Here 3. Model applied and the prediction is: " + data);
+        console.log("Here poly 3. Model applied and the prediction is: " + data);
         // $('#power_output').val("Here 3. Model applied and the prediction is: " + data);
       });
     } else {
-      console.log("Here 4 - out of range: " + inputWind);
+      console.log("Here poly 4 - out of range: " + inputWind);
       $("#power_output_polyReg").val("Wrong input; should be between 1 and 25.");
+    };
+  });
+};
+
+// predict the power output from random forest
+function doApplyModel_randFor() {
+
+  $("#doApplyButton_randFor").click(function (e) {
+    e.preventDefault();
+    var inputWind = parseInt(document.getElementById('user_input').value);
+    console.log("Here forest 1. Input read: " + inputWind)
+    // check inputs if within turbine operative range
+    if ((inputWind >= 1) && (inputWind <= 25)) {
+      console.log("Here forest 2. Condition checked (good): " + inputWind);
+      inputWind = parseInt(inputWind);
+      $.getJSON("/api/rand-forest-model/" + encodeURI(inputWind), function (data) {
+        $('#power_output_randFor').val(parseFloat(data).toFixed(2));
+        console.log("Here forest 3. Model applied and the prediction is: " + data);
+        // $('#power_output').val("Here 3. Model applied and the prediction is: " + data);
+      });
+    } else {
+      console.log("Here forest 4 - out of range: " + inputWind);
+      $("#power_output_randFor").val("Wrong input; should be between 1 and 25.");
     };
   });
 };
@@ -84,7 +107,7 @@ $("#uniform-button").click(function (e) {
 });
 
 // ////////////////////
-// currency exchange 
+// currency exchange rate - script for getting data using AJAX
 
 function bitcoinRate() {
   $.ajax({
@@ -127,23 +150,4 @@ function scrollFunction() {
 function topFunction() {
   document.body.scrollTop = 0;
   document.documentElement.scrollTop = 0;
-}
-
-// ////////////////////
-// Input validation
-
-// -----------------
-// Login to server; adopted from: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_login_form_modal
-
-// Open the modal (login box)
-var modal = document.getElementById('login_pop');
-
-// -----------------
-// The following is a JavaScript verification function 
-// Adopted from: https://www.daniweb.com/programming/web-development/code/330933/a-simple-html-login-page-using-javascript
-function check(form) {
-  // the following code checkes whether the entered password is matching 
-  if (form.u_name.value == "User" && form.psw.value == "GMIT") {
-    window.open("equipment.html") // opens the target page while password matches
-  }
 }
