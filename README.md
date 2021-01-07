@@ -45,26 +45,66 @@ In order to open the web app localy, clone or download this github repository (k
 
 Option 1) __Virtual environment__
 
+The following steps depend on the operating system.
+
+
+A) __Linux__
+
 Within the directory, create a new virtual environment, typing in the terminal
 ```bash
 python -m venv venv
 ```
 
-and activate it (commands depend on the operating system):
-
-A) Linux
+Activate the virtual environment:
 ```bash
-export FLASK_APP=app.py
-```
-
-B) Windows
-```bash
-set FLASK_APP=app.py
+source venv/bin/activate 
 ```
 
 Install all the required libraries listed in the requirements.txt file:
 ```bash
 pip install -r requirements.txt
+```
+
+Start the web app using the command:
+
+```bash
+export FLASK_APP=app.py
+```
+
+To run the server program, type:
+```bash
+python -m flask run
+```
+
+This will activate localhost server at <http://127.0.0.1:5000/>.
+
+To stop the server running, press `ctrl`+`c` in terminal.
+
+In order to leave the virtual environment:
+```bash
+deactivate
+```
+
+B) __Windows__
+
+Within the directory, create a new virtual environment, typing in the terminal
+```bash
+python -m venv venv
+```
+
+Activate the virtual environment:
+```bash
+\venv\Scripts\activate.bat
+```
+
+Install all the required libraries listed in the requirements.txt file:
+```bash
+pip install -r requirements.txt
+```
+
+To run the server program, type:
+```bash
+set FLASK_APP=app.py
 ```
 
 To run the server program, type
