@@ -43,10 +43,9 @@ For viewing the notebook online, it is recommended to use Jupyter Notebooks view
 
 In order to open the web app localy, clone or download this github repository (keep the directory structure intact).
 
-Option 1) __Virtual environment__
+#### __Option 1) Virtual environment__
 
 The following steps depend on the operating system.
-
 
 A) __Linux__
 
@@ -121,16 +120,21 @@ In order to leave the virtual environment:
 deactivate
 ```
 
-Option 2) __Docker__
+#### __Option 2) Docker__
 
 Install Docker on your computer, typing in the terminal:
 ```bash
 pip install docker
 ```
 
-Inside the directory holding the repository, run the following commands to build a docker image
+To create a new docker image, inside the directory holding the repository type:
 ```bash
 docker build . -t wind-power-app
+```
+
+Alternatively to creating a new one, pull the image from the dockerhub, using the command:
+```bash
+docker pull andkoc001/wind-power-app
 ```
 
 In order to create and start the docker container, execute the command:
@@ -140,7 +144,7 @@ docker run -i -t -p 5000:5000 --rm wind-power-app
 
 This will activate localhost server at <http://127.0.0.1:5000/>.
 
-To stop the server running, press `ctrl`+`c` in terminal.
+To stop the server running, press `ctrl`+`c` in terminal. The container will be automaticly removed.
 
 ___
 

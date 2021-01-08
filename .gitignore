@@ -131,3 +131,4 @@ dmypy.json
 
 # my additional ingores
 temp_other_notebooks/
+playground_for_trials.ipynb
